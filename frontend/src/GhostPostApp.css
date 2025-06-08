@@ -1,110 +1,87 @@
-.container {
-  display: flex;
-  height: 100vh;
-  padding: 20px;
-  gap: 20px;
-  font-family: sans-serif;
-  background-color: #f3f4f6;
+/* GhostPostApp.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f7fa;
+  color: #333;
 }
 
-.left, .right {
+.ghost-app-container {
+  display: flex;
+  height: 100vh;
+  padding: 40px;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.left-panel,
+.right-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  overflow-y: auto;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  gap: 20px;
 }
 
-.input-area {
-  height: 120px;
-  padding: 10px;
+textarea, input {
   font-family: monospace;
   font-size: 14px;
-  border-radius: 6px;
+  padding: 12px;
   border: 1px solid #ccc;
-  resize: vertical;
-}
-
-.input-field {
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.btn {
-  padding: 10px;
-  font-size: 14px;
+textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+button {
+  padding: 10px 20px;
+  font-weight: bold;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-1px);
 }
 
 .create-btn {
-  background-color: #3b82f6;
+  background-color: #007bff;
   color: white;
-}
-
-.create-btn:hover {
-  background-color: #2563eb;
 }
 
 .delete-btn {
-  background-color: #ef4444;
+  background-color: #dc3545;
   color: white;
-}
-
-.delete-btn:hover {
-  background-color: #dc2626;
 }
 
 .view-btn {
-  background-color: #10b981;
+  background-color: #28a745;
   color: white;
-  margin-left: 10px;
-}
-
-.view-btn:hover {
-  background-color: #059669;
 }
 
 .response-box {
-  background-color: #f9fafb;
+  background: #ffffff;
+  border-left: 5px solid #007bff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.response-box.error {
+  border-left-color: #dc3545;
+  color: #dc3545;
+}
+
+pre {
+  background: #f1f1f1;
   padding: 12px;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
-}
-
-.snippet-view {
-  background-color: #f1f5f9;
-  padding: 10px;
-  border-radius: 4px;
-  white-space: pre-wrap;
-  font-family: monospace;
-}
-
-.meta-text {
-  font-size: 12px;
-  color: #6b7280;
-  margin-top: 8px;
-}
-
-.error-text {
-  color: #dc2626;
-}
-
-.warning-text {
-  color: #b91c1c;
-  font-size: 12px;
-}
-
-.view-box {
-  display: flex;
-  align-items: center;
+  overflow-x: auto;
 }

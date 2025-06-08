@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./GhostPostApp.css"; // <-- include the CSS file
+import "./GhostPostApp.css";
 
 export default function GhostPostApp() {
   const [content, setContent] = useState("");
@@ -42,48 +42,40 @@ export default function GhostPostApp() {
   };
 
   return (
-    <div className="container">
-      <div className="left">
-        <h2>Create Snippet</h2>
+    <div className="ghost-app-container">
+      <div className="left-panel">
         <textarea
-          className="input-area"
           placeholder="Write your code snippet here..."
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
-        <button className="btn create-btn" onClick={handleCreate}>
-          Create Post
-        </button>
+        <button className="create-btn" onClick={handleCreate}>Create Post</button>
 
         {createResponse && (
-          <div className="response-box">
+          <div className={`response-box ${createResponse.error ? 'error' : ''}`}>
             {createResponse.error ? (
-              <p className="error-text">{createResponse.error}</p>
+              <p>{createResponse.error}</p>
             ) : (
-              <div>
+              <>
                 <p><strong>URL:</strong> {createResponse.url}</p>
                 <p><strong>Delete Key:</strong> {createResponse.deleteKey}</p>
-                <p className="warning-text">Do not lose this delete key!</p>
-              </div>
+                <p><em className="text-sm text-red-500">Do not lose this delete key!</em></p>
+              </>
             )}
           </div>
         )}
 
-        <h3>Delete Snippet</h3>
         <input
-          className="input-field"
           placeholder="Enter delete key..."
           value={deleteKey}
           onChange={(e) => setDeleteKey(e.target.value)}
         />
-        <button className="btn delete-btn" onClick={handleDelete}>
-          Delete Post
-        </button>
+        <button className="delete-btn" onClick={handleDelete}>Delete Post</button>
 
         {deleteResponse && (
-          <div className="response-box">
+          <div className={`response-box ${deleteResponse.error ? 'error' : ''}`}>
             {deleteResponse.error ? (
-              <p className="error-text">{deleteResponse.error}</p>
+              <p>{deleteResponse.error}</p>
             ) : (
               <p>{deleteResponse.message}</p>
             )}
@@ -91,30 +83,24 @@ export default function GhostPostApp() {
         )}
       </div>
 
-      <div className="right">
-        <h2>View Snippet</h2>
-        <div className="view-box">
+      <div className="right-panel">
+        <div style={{ display: "flex", gap: "10px" }}>
           <input
-            className="input-field"
             placeholder="Paste snippet URL to view..."
             value={viewUrl}
             onChange={(e) => setViewUrl(e.target.value)}
           />
-          <button className="btn view-btn" onClick={handleView}>
-            View
-          </button>
+          <button className="view-btn" onClick={handleView}>View</button>
         </div>
 
         {viewedContent && (
           <div className="response-box">
             {viewedContent.error ? (
-              <p className="error-text">{viewedContent.error}</p>
+              <p className="text-red-500">{viewedContent.error}</p>
             ) : (
               <>
-                <pre className="snippet-view">{viewedContent.content}</pre>
-                <p className="meta-text">
-                  Created At: {new Date(viewedContent.createdAt).toLocaleString()}
-                </p>
+                <pre>{viewedContent.content}</pre>
+                <p><em>Created At:</em> {new Date(viewedContent.createdAt).toLocaleString()}</p>
               </>
             )}
           </div>
