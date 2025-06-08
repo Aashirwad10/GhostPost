@@ -12,7 +12,7 @@ const snippetSchema = new mongoose.Schema({
 });
 
 // ← add this line to create/update the TTL index
-snippetSchema.index({ createdAt: 1 }, { expireAfterSeconds: 20 });
+// snippetSchema.index({ createdAt: 1 }, { expireAfterSeconds: 20 });
 
 const Snippet = mongoose.model("Snippet", snippetSchema);
 export default Snippet;
