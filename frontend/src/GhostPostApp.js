@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./GhostPostApp.css";
+import "./GhostPostApp.css"; // make sure to import your CSS
 
 export default function GhostPostApp() {
   const [content, setContent] = useState("");
@@ -42,24 +42,24 @@ export default function GhostPostApp() {
   };
 
   return (
-    <div className="ghost-app-container">
+    <div className="ghost-post-app">
       <div className="left-panel">
         <textarea
           placeholder="Write your code snippet here..."
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
-        <button className="create-btn" onClick={handleCreate}>Create Post</button>
+        <button onClick={handleCreate}>🚀 Create Post</button>
 
         {createResponse && (
-          <div className={`response-box ${createResponse.error ? 'error' : ''}`}>
+          <div className="response-box">
             {createResponse.error ? (
-              <p>{createResponse.error}</p>
+              <p className="error-text">{createResponse.error}</p>
             ) : (
               <>
                 <p><strong>URL:</strong> {createResponse.url}</p>
                 <p><strong>Delete Key:</strong> {createResponse.deleteKey}</p>
-                <p><em className="text-sm text-red-500">Do not lose this delete key!</em></p>
+                <p className="warning-text">⚠️ Don't lose this delete key!</p>
               </>
             )}
           </div>
@@ -70,12 +70,12 @@ export default function GhostPostApp() {
           value={deleteKey}
           onChange={(e) => setDeleteKey(e.target.value)}
         />
-        <button className="delete-btn" onClick={handleDelete}>Delete Post</button>
+        <button className="delete-btn" onClick={handleDelete}>🗑️ Delete Post</button>
 
         {deleteResponse && (
-          <div className={`response-box ${deleteResponse.error ? 'error' : ''}`}>
+          <div className="response-box">
             {deleteResponse.error ? (
-              <p>{deleteResponse.error}</p>
+              <p className="error-text">{deleteResponse.error}</p>
             ) : (
               <p>{deleteResponse.message}</p>
             )}
@@ -84,23 +84,23 @@ export default function GhostPostApp() {
       </div>
 
       <div className="right-panel">
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div className="view-controls">
           <input
             placeholder="Paste snippet URL to view..."
             value={viewUrl}
             onChange={(e) => setViewUrl(e.target.value)}
           />
-          <button className="view-btn" onClick={handleView}>View</button>
+          <button onClick={handleView}>👁️ View</button>
         </div>
 
         {viewedContent && (
-          <div className="response-box">
+          <div className="view-box">
             {viewedContent.error ? (
-              <p className="text-red-500">{viewedContent.error}</p>
+              <p className="error-text">{viewedContent.error}</p>
             ) : (
               <>
                 <pre>{viewedContent.content}</pre>
-                <p><em>Created At:</em> {new Date(viewedContent.createdAt).toLocaleString()}</p>
+                <p className="timestamp">🕒 {new Date(viewedContent.createdAt).toLocaleString()}</p>
               </>
             )}
           </div>
